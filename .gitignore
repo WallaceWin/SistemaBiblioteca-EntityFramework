@@ -6,6 +6,7 @@
 bin/
 obj/
 .idea/
+.env
 
 # Common node modules locations
 /node_modules

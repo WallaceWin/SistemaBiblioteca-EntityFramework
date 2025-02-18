@@ -125,7 +125,7 @@ static public class BooksController
         }
     }
 
-    static private void DeleteBooks()
+    async static private void DeleteBooks()
     {
         Console.WriteLine("Digite o Id do livro a ser Deletado: ");
         var id = int.Parse(Console.ReadLine());

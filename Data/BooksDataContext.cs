@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Data.Mappings;
 using Biblioteca.Models;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biblioteca.Data;
@@ -12,7 +13,14 @@ public class BooksDataContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer("Server=localhost,1433;Database=Library;User ID=sa;Password=Banano2@;TrustServerCertificate=True");
+        Env.Load();
+        var server = Env.GetString("SERVER");
+        var port = Env.GetInt("PORT");
+        var db = Env.GetString("DATABASE");
+        var user = Env.GetString("USER");
+        var password = Env.GetString("PASSWORD");
+        
+        options.UseSqlServer($"Server={server},{port};Database={db};User ID={user};Password={password};TrustServerCertificate=True");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
